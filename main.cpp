@@ -1,23 +1,17 @@
-////////////////////////////////////////////////////////////
-// Headers
-////////////////////////////////////////////////////////////
+#include <vector>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
-#include <cmath>
-#include <ctime>
-#include <cstdlib>
+#include "window_admin.h"
 
 
-////////////////////////////////////////////////////////////
-/// Entry point of application
-///
-/// \return Application exit code
-///
-////////////////////////////////////////////////////////////
+
 int main()
 {
+	window_admin admin;
+	//admin.run();
 
-
+	std::vector<int> vc{ 5,4,8,1, 2, 3, 4, 5 };
+	admin.show(vc);
 
 	return 0;
 }

@@ -1,5 +1,5 @@
 #include "window_admin.h"
-
+#include <windows.h>
 
 void window_admin::window_check()
 {
@@ -11,13 +11,33 @@ void window_admin::window_check()
 	}
 }
 
-void window_admin::show(std::vector<int> elem)
+void window_admin::show(std::vector<int> &elem)
 {
+window.clear();
+//elem.size();
 
 
-	window.clear();
-	//window.draw();
+
+for (int i=0;i< elem.size();i++)
+{
+	int tmp =elem.at(i);
+
+
+
+	rectangle.setSize(sf::Vector2f(10, 10* tmp));
+	rectangle.setFillColor(sf::Color(200, 100, 100));
+	rectangle.setPosition(sf::Vector2f(50 + i * 20,500));
+	window.draw(rectangle);
+}
+	
+
+
+
+	
+
+	
 	window.display();
+	Sleep(2000);
 }
 
 void window_admin::run()
