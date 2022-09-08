@@ -1,8 +1,9 @@
 #include "window_admin.h"
 #include <windows.h>
 
-void window_admin::login_window()
+int window_admin::login_window()
 {
+	int number_sort = 0;
 	sf::RectangleShape rectangle1;
 	rectangle1.setSize(sf::Vector2f(300, 300));
 	rectangle1.setFillColor(sf::Color(200, 100, 100));
@@ -40,8 +41,9 @@ void window_admin::login_window()
 	{
 		if (sf::IntRect(150, 250, 50, 50).contains(sf::Mouse::getPosition(window)))
 		{ 
-			text_ = true;
-			//login_window_is_open = false; 
+			//text_ = true;
+			login_window_is_open = false; 
+			number_sort = 0;
 		}
 	}
 
@@ -54,9 +56,11 @@ void window_admin::login_window()
 	window.display();
 
     }
+
+	return number_sort;
 }
 
-bool window_admin::register_fun(int i, void (*sort_fun)(std::vector<int> V))
+bool window_admin::register_fun(int i, void (*sort_fun)(std::vector<int> &V))
 {
 
 	mas_sort_fun.push_back(sort_fun);
@@ -111,7 +115,7 @@ for (int i=0;i< elem.size();i++)
 
 	
 	window.display();
-	Sleep(2000);
+	//Sleep(200);
 }
 
 void window_admin::run()
@@ -119,7 +123,11 @@ void window_admin::run()
 	while (window.isOpen())
 	{
 
-		login_window();
+		int number_sort = login_window();
+
+
+		std::vector<int> vc{ 10,5,6,9,8,7,25,35,6,5,4,5, 5,4,8,1, 2, 3, 4, 5,2,3,4,5,6,7,8,9,5,7,8,9,6 };
+		mas_sort_fun.at(number_sort)(vc);
 
 		//void bubble_sort(std::vector<int> elem);
 
