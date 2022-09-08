@@ -1,6 +1,61 @@
 #include "window_admin.h"
 #include <windows.h>
 
+void window_admin::login_window()
+{
+	sf::RectangleShape rectangle1;
+	rectangle1.setSize(sf::Vector2f(300, 300));
+	rectangle1.setFillColor(sf::Color(200, 100, 100));
+	rectangle1.setPosition(sf::Vector2f(100, 100));
+
+	sf::RectangleShape rectangle2;
+	rectangle2.setSize(sf::Vector2f(50, 50));
+	rectangle2.setFillColor(sf::Color(0, 127, 255));
+	rectangle2.setPosition(sf::Vector2f(150, 250));
+
+	sf::Font front;
+	front.loadFromFile("type/Mistral.ttf");
+
+	sf::Text text;
+	text.setFont(front);
+	text.setFillColor(sf::Color::Black);
+	text.setStyle(sf::Text::Bold);
+	text.setCharacterSize(35);
+	text.setString(std::string("you are gay"));
+    text.setPosition(250, 250 );
+
+
+	bool login_window_is_open = true;
+	bool text_ = false;
+
+
+	while (login_window_is_open)
+	{
+
+	window_check();
+
+	if (sf::IntRect(150, 250, 50, 50).contains(sf::Mouse::getPosition(window))) { rectangle2.setFillColor(sf::Color(255, 126, 0)); }
+
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		if (sf::IntRect(150, 250, 50, 50).contains(sf::Mouse::getPosition(window)))
+		{ 
+			text_ = true;
+			//login_window_is_open = false; 
+		}
+	}
+
+
+	window.clear();
+	window.draw(rectangle1);
+	window.draw(rectangle2);
+	
+	if(text_) window.draw(text);
+	window.display();
+
+    }
+}
+
 bool window_admin::register_fun(int i, void (*sort_fun)(std::vector<int> V))
 {
 
@@ -64,7 +119,7 @@ void window_admin::run()
 	while (window.isOpen())
 	{
 
-
+		login_window();
 
 		//void bubble_sort(std::vector<int> elem);
 

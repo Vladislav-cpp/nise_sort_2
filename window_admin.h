@@ -27,6 +27,8 @@ public:
 
 	}
 
+	void login_window();
+
 	bool register_fun(int i,void (*sort_fun)(std::vector<int> V));
 
 	void window_check();

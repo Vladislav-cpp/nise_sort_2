@@ -12,8 +12,8 @@ int main()
 	//admin.run();
 
 	std::vector<int> vc{10,5,6,9,8,7,25,35,6,5,4,5, 5,4,8,1, 2, 3, 4, 5,2,3,4,5,6,7,8,9,5,7,8,9,6 };
-	admin.show(vc);
-
+	//admin.show(vc);
+	admin.login_window();
 
 
 	
