@@ -15,7 +15,7 @@ private:
 
 	sf::RectangleShape rectangle;
 
-	std::vector<void(*)(std::vector<int> v)> mas_sort_fun;
+	std::vector<void(*)(std::vector<int> &v)> mas_sort_fun;
 
 	//std::map<int, void(*)(std::vector<int> v)> map_fun;
 
@@ -27,9 +27,9 @@ public:
 
 	}
 
-	void login_window();
+	int login_window();
 
-	bool register_fun(int i,void (*sort_fun)(std::vector<int> V));
+	bool register_fun(int i,void (*sort_fun)(std::vector<int> &V));
 
 	void window_check();
 
