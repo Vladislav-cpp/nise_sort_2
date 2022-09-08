@@ -115,7 +115,7 @@ for (int i=0;i< elem.size();i++)
 
 	
 	window.display();
-	//Sleep(200);
+	Sleep(10);
 }
 
 void window_admin::run()

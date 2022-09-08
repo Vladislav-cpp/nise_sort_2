@@ -86,6 +86,7 @@ void insertion_sort(std::vector<int>& elem)
             elem.at(j + 1) = elem.at(j);
             admin.show(elem);
         }
+        elem.at(j + 1) = key;
     }
 }
 
