@@ -115,7 +115,9 @@ for (int i=0;i< elem.size();i++)
 
 	
 	window.display();
-	Sleep(20);
+
+	Sleep(10);
+
 }
 
 void window_admin::run()
@@ -132,7 +134,12 @@ void window_admin::run()
 
 
 
-		mas_sort_fun.at(number_sort)(vc);
+
+		std::vector<int> vc{ 10,5,6,9,8,7,25,35,6,5,4,5, 5,4,8,1, 2, 3, 4, 5,2,3,4,5,6,7,8,9,5,7,8,9,6 };
+		mas_sort_fun.at(1)(vc);
+
+		//mas_sort_fun.at(number_sort)(vc);
+
 
 		//void bubble_sort(std::vector<int> elem);
 

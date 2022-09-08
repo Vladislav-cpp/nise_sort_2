@@ -15,6 +15,14 @@ int main()
 	admin.register_fun(1, insertion_sort);
 
 
+	admin.register_fun(1, bubble_sort);
+	admin.register_fun(2, quick_sort_1);
+	admin.register_fun(3, selection_sort);
+	admin.register_fun(4, insertion_sort);
+
+
+
+
 	//admin.run();
 
 	
