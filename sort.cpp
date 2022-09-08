@@ -34,7 +34,7 @@ void quick_sort_next(std::vector<int>& elem, int first, int last)
         while (elem.at(i) < middle)
             i++;
         while (elem.at(j) > middle)
-            j++;
+            j--;
 
         if (i <= j)
         {
@@ -45,9 +45,9 @@ void quick_sort_next(std::vector<int>& elem, int first, int last)
 
     } while (i <= j);
 
-    if (i < last)
-        quick_sort_next(elem, first, j);
     if (j > first)
+        quick_sort_next(elem, first, j);
+    if (i < last)
         quick_sort_next(elem, i, last);
 
 }
