@@ -26,7 +26,7 @@ void bubble_sort(std::vector<int> &elem)
 
 }
 
-<<<<<<< HEAD
+
 void quick_sort(std::vector<int>& elem, int last = elem.size() - 1, int first = 0)
 {
     int middle = elem.at((first + last) / 2);
@@ -87,5 +87,4 @@ void insertion_sort(std::vector<int>& elem)
         }
     }
 }
-=======
->>>>>>> 9dd8f53627e35bd2f0ce35506051c186490eba45
+
