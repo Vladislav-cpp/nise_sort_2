@@ -15,9 +15,6 @@ void bubble_sort(std::vector<int> &elem)
             if (elem.at(j) > elem.at(j + 1))
             {
                 std::swap(elem.at(j), elem.at(j + 1));
-                //int tmp = elem.at(j);
-                //elem.at(j) = elem.at(j + 1);
-                //elem.at(j + 1) = tmp;
             }
             admin.show(elem);
 
@@ -26,8 +23,7 @@ void bubble_sort(std::vector<int> &elem)
 
 }
 
-
-void quick_sort(std::vector<int>& elem, int last = elem.size() - 1, int first = 0)
+void quick_sort_next(std::vector<int>& elem, int first, int last)
 {
     int middle = elem.at((first + last) / 2);
     int i = first;
@@ -50,10 +46,15 @@ void quick_sort(std::vector<int>& elem, int last = elem.size() - 1, int first = 
     } while (i <= j);
 
     if (i < last)
-        quick_sort(&elem, last, i);
+        quick_sort_next(elem, first, j);
     if (j > first)
-        quick_sort(&elem, j, first);
+        quick_sort_next(elem, i, last);
 
+}
+
+void quick_sort(std::vector<int>& elem)
+{
+    quick_sort_next(elem, 0, elem.size() - 1);
 }
 
 void selection_sort(std::vector<int>& elem)
