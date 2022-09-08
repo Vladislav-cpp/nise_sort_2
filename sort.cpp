@@ -26,8 +26,14 @@ void bubble_sort(std::vector<int> &elem)
 
 }
 
+void quick_sort(std::vector<int>& elem, int last , int first );
 
-void quick_sort(std::vector<int>& elem, int last = elem.size() - 1, int first = 0)
+void quick_sort_1(std::vector<int>& elem)
+{
+    quick_sort(elem, elem.size()-1, 0);
+}
+
+void quick_sort(std::vector<int>& elem, int last , int first )
 {
     int middle = elem.at((first + last) / 2);
     int i = first;
@@ -50,9 +56,9 @@ void quick_sort(std::vector<int>& elem, int last = elem.size() - 1, int first = 
     } while (i <= j);
 
     if (i < last)
-        quick_sort(&elem, last, i);
+        quick_sort(elem, last, i);
     if (j > first)
-        quick_sort(&elem, j, first);
+        quick_sort(elem, j, first);
 
 }
 
