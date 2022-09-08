@@ -38,9 +38,11 @@ void quick_sort_next(std::vector<int>& elem, int first, int last)
 
         if (i <= j)
         {
+            admin.window_check();
             std::swap(elem.at(i), elem.at(j));
             i++;
             j--;
+            admin.show(elem);
         }
 
     } while (i <= j);
