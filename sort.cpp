@@ -5,7 +5,7 @@
 
 window_admin admin;
 
-void bubble_sort(std::vector<int> &elem)
+void bubble_sort(std::vector<int>& elem)
 {
     int i, j;
     for (i = 0; i < elem.size() - 1; i++)
@@ -24,20 +24,9 @@ void bubble_sort(std::vector<int> &elem)
 
 }
 
-//<<<<<<< vetca_zenikoff
 
-//void quick_sort(std::vector<int>& elem, int last , int first );
-//
-//void quick_sort_1(std::vector<int>& elem)
-//{
-//    quick_sort(elem, elem.size()-1, 0);
-//}
 
-//void quick_sort_next(std::vector<int>& elem, int last , int first )
-//void quick_sort_next(std::vector<int>& elem, int first, int last)
-//=======
 void quick_sort_next(std::vector<int>& elem, int first, int last)
-//>>>>>>> master
 
 {
     int middle = elem.at((first + last) / 2);
@@ -77,7 +66,7 @@ void selection_sort(std::vector<int>& elem)
 {
     int i, j;
     for (i = 0; i < elem.size() - 1; i++)
-        for (j = i+1; j < elem.size(); j++)
+        for (j = i + 1; j < elem.size(); j++)
         {
             admin.window_check();
             if (elem.at(j) < elem.at(i))
@@ -105,4 +94,3 @@ void insertion_sort(std::vector<int>& elem)
         elem.at(j + 1) = key;
     }
 }
-

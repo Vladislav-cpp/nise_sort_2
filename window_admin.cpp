@@ -23,7 +23,7 @@ int window_admin::login_window()
 	text.setStyle(sf::Text::Bold);
 	text.setCharacterSize(35);
 	text.setString(std::string("you are gay"));
-    text.setPosition(250, 250 );
+	text.setPosition(250, 250);
 
 
 	bool login_window_is_open = true;
@@ -33,34 +33,34 @@ int window_admin::login_window()
 	while (login_window_is_open)
 	{
 
-	window_check();
+		window_check();
 
-	if (sf::IntRect(150, 250, 50, 50).contains(sf::Mouse::getPosition(window))) { rectangle2.setFillColor(sf::Color(255, 126, 0)); }
+		if (sf::IntRect(150, 250, 50, 50).contains(sf::Mouse::getPosition(window))) { rectangle2.setFillColor(sf::Color(255, 126, 0)); }
 
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-	{
-		if (sf::IntRect(150, 250, 50, 50).contains(sf::Mouse::getPosition(window)))
-		{ 
-			//text_ = true;
-			login_window_is_open = false; 
-			number_sort = 0;
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			if (sf::IntRect(150, 250, 50, 50).contains(sf::Mouse::getPosition(window)))
+			{
+				//text_ = true;
+				login_window_is_open = false;
+				number_sort = 0;
+			}
 		}
+
+
+		window.clear();
+		window.draw(rectangle1);
+		window.draw(rectangle2);
+
+		if (text_) window.draw(text);
+		window.display();
+
 	}
-
-
-	window.clear();
-	window.draw(rectangle1);
-	window.draw(rectangle2);
-	
-	if(text_) window.draw(text);
-	window.display();
-
-    }
 
 	return number_sort;
 }
 
-bool window_admin::register_fun(int i, void (*sort_fun)(std::vector<int> &V))
+bool window_admin::register_fun(int i, void (*sort_fun)(std::vector<int>& V))
 {
 
 	mas_sort_fun.push_back(sort_fun);
@@ -79,41 +79,41 @@ void window_admin::window_check()
 	}
 }
 
-void window_admin::show(std::vector<int> &elem)
+void window_admin::show(std::vector<int>& elem)
 {
-window.clear();
+	window.clear();
 
-int interval = 0;
-int width = 0;
-int interval_plus_width = 0;
-const int MIN_interval_plus_width = 2;
-const int MAX_interval_plus_width = 20;
+	int interval = 0;
+	int width = 0;
+	int interval_plus_width = 0;
+	const int MIN_interval_plus_width = 2;
+	const int MAX_interval_plus_width = 20;
 
-interval_plus_width = 460/elem.size() ;//460 - size is allocated to the graph - !!!! make constant !!!
+	interval_plus_width = 460 / elem.size();//460 - size is allocated to the graph - !!!! make constant !!!
 
-if (interval_plus_width < MIN_interval_plus_width) { return ; }
-if (interval_plus_width > MAX_interval_plus_width) { interval_plus_width = MAX_interval_plus_width; }
+	if (interval_plus_width < MIN_interval_plus_width) { return; }
+	if (interval_plus_width > MAX_interval_plus_width) { interval_plus_width = MAX_interval_plus_width; }
 
-width = interval = interval_plus_width / 2;
+	width = interval = interval_plus_width / 2;
 
-for (int i=0;i< elem.size();i++)
-{
-	int tmp =elem.at(i);
-
-
-
-	rectangle.setSize(sf::Vector2f(10, -10* tmp));
-	rectangle.setFillColor(sf::Color(200, 100, 100));
-	rectangle.setPosition(sf::Vector2f(20 + width * i*2,500));
-	window.draw(rectangle);
-}
-	
+	for (int i = 0; i < elem.size(); i++)
+	{
+		int tmp = elem.at(i);
 
 
 
-	
+		rectangle.setSize(sf::Vector2f(10, -10 * tmp));
+		rectangle.setFillColor(sf::Color(200, 100, 100));
+		rectangle.setPosition(sf::Vector2f(20 + width * i * 2, 500));
+		window.draw(rectangle);
+	}
 
-	
+
+
+
+
+
+
 	window.display();
 
 	Sleep(10);
