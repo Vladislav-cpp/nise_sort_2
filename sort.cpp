@@ -5,7 +5,7 @@
 
 window_admin admin;
 
-void bubble_sort(std::vector<int> &elem)
+void bubble_sort(std::vector<int>& elem)
 {
     int i, j;
     for (i = 0; i < elem.size() - 1; i++)
@@ -64,7 +64,7 @@ void selection_sort(std::vector<int>& elem)
 {
     int i, j;
     for (i = 0; i < elem.size() - 1; i++)
-        for (j = i+1; j < elem.size(); j++)
+        for (j = i + 1; j < elem.size(); j++)
         {
             admin.window_check();
             if (elem.at(j) < elem.at(i))
@@ -92,4 +92,3 @@ void insertion_sort(std::vector<int>& elem)
         elem.at(j + 1) = key;
     }
 }
-
