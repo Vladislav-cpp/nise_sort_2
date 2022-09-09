@@ -8,7 +8,7 @@
 #include "sort.cpp"
 
 
-
+//³μΰβ³κομβ
 int main()
 {
 	srand(static_cast<unsigned>(time(nullptr)));
