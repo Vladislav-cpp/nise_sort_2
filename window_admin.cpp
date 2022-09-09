@@ -136,7 +136,7 @@ void window_admin::run()
 
 
 		//std::vector<int> vc1{ 10,5,6,9,8,7,25,35,6,5,4,5, 5,4,8,1, 2, 3, 4, 5,2,3,4,5,6,7,8,9,5,7,8,9,6 };
-		mas_sort_fun.at(1)(vc);
+		mas_sort_fun.at(4)(vc);
 
 		//mas_sort_fun.at(number_sort)(vc);
 

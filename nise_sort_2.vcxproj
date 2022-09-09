@@ -368,7 +368,6 @@ copy /Y "$(SolutionDir)resources"  "$(TargetDir)resources\"</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="sort.cpp" />
     <ClCompile Include="window_admin.cpp" />
   </ItemGroup>
   <ItemGroup>
