@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <vector>
 #include "window_admin.h"
@@ -23,6 +24,7 @@ void bubble_sort(std::vector<int> &elem)
 
 }
 
+//<<<<<<< vetca_zenikoff
 
 //void quick_sort(std::vector<int>& elem, int last , int first );
 //
@@ -31,8 +33,11 @@ void bubble_sort(std::vector<int> &elem)
 //    quick_sort(elem, elem.size()-1, 0);
 //}
 
-void quick_sort_next(std::vector<int>& elem, int last , int first )
+//void quick_sort_next(std::vector<int>& elem, int last , int first )
 //void quick_sort_next(std::vector<int>& elem, int first, int last)
+//=======
+void quick_sort_next(std::vector<int>& elem, int first, int last)
+//>>>>>>> master
 
 {
     int middle = elem.at((first + last) / 2);
@@ -63,8 +68,6 @@ void quick_sort_next(std::vector<int>& elem, int last , int first )
     if (j > first)
         quick_sort_next(elem, j, first);
 }
-
-
 void quick_sort(std::vector<int>& elem)
 {
     quick_sort_next(elem, 0, elem.size() - 1);
