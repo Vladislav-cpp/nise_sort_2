@@ -1,9 +1,5 @@
-#pragma once
-#include <iostream>
-#include <vector>
-#include "window_admin.h"
-
-window_admin admin;
+#include "sort.h"
+extern window_admin admin;
 
 void bubble_sort(std::vector<int>& elem)
 {
