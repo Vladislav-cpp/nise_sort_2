@@ -18,7 +18,7 @@ private:
 	//std::map<int, void(*)(std::vector<int> v)> map_fun;
 
 public:
-	window_admin() :window(sf::VideoMode(800, 800), "SFMLworks")
+	window_admin() :window(sf::VideoMode(800, 800), "Zheka LOH")
 	{
 
 	}

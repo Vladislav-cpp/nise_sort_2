@@ -8,4 +8,5 @@ void quick_sort(std::vector<int>& elem);
 void selection_sort(std::vector<int>& elem);
 void insertion_sort(std::vector<int>& elem);
 void merge_sort(std::vector<int>& elem);
+void heap_sort(std::vector<int>& elem);
 

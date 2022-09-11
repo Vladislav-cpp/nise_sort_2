@@ -9,7 +9,7 @@ int window_admin::login_window()
 {
 	int number_sort = 0;
 	sf::RectangleShape rectangle1;
-	rectangle1.setSize(sf::Vector2f(300, 550));
+	rectangle1.setSize(sf::Vector2f(300, 650));
 	rectangle1.setFillColor(sf::Color(200, 100, 100));
 	rectangle1.setPosition(sf::Vector2f(100, 100));
 
@@ -37,6 +37,11 @@ int window_admin::login_window()
 	rectangle6.setSize(sf::Vector2f(50, 50));
 	rectangle6.setFillColor(sf::Color(0, 127, 255));
 	rectangle6.setPosition(sf::Vector2f(150, 550));
+
+	sf::RectangleShape rectangle7;
+	rectangle7.setSize(sf::Vector2f(50, 50));
+	rectangle7.setFillColor(sf::Color(0, 127, 255));
+	rectangle7.setPosition(sf::Vector2f(150, 650));
 
 	sf::Font front;
 	front.loadFromFile("type/Mistral.ttf");
@@ -69,6 +74,8 @@ int window_admin::login_window()
 		if (!(sf::IntRect(150, 450, 50, 50).contains(sf::Mouse::getPosition(window)))) { rectangle5.setFillColor(sf::Color(0, 127, 255)); }
 		if (sf::IntRect(150, 550, 50, 50).contains(sf::Mouse::getPosition(window))) { rectangle6.setFillColor(sf::Color(255, 126, 0)); }
 		if (!(sf::IntRect(150, 550, 50, 50).contains(sf::Mouse::getPosition(window)))) { rectangle6.setFillColor(sf::Color(0, 127, 255)); }
+		if (sf::IntRect(150, 650, 50, 50).contains(sf::Mouse::getPosition(window))) { rectangle7.setFillColor(sf::Color(255, 126, 0)); }
+		if (!(sf::IntRect(150, 650, 50, 50).contains(sf::Mouse::getPosition(window)))) { rectangle7.setFillColor(sf::Color(0, 127, 255)); }
 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
@@ -102,6 +109,12 @@ int window_admin::login_window()
 				login_window_is_open = false;
 				number_sort = 4;
 			}
+			if (sf::IntRect(150, 650, 50, 50).contains(sf::Mouse::getPosition(window)))
+			{
+				//text_ = true;
+				login_window_is_open = false;
+				number_sort = 5;
+			}
 		}
 
 
@@ -113,6 +126,7 @@ int window_admin::login_window()
 		window.draw(rectangle4);
 		window.draw(rectangle5);
 		window.draw(rectangle6);
+		window.draw(rectangle7);
 
 		if (text_) window.draw(text);
 		window.display();

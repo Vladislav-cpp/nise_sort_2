@@ -208,3 +208,44 @@ void merge_sort(std::vector<int>& elem)
     admin.show(elem);
 }
 
+void heapify(std::vector<int>& elem, int N, int i)
+{
+    int largest = i;
+
+    int l = 2 * i + 1;
+    int r = 2 * i + 2;
+
+    if (l<N && elem[l]>elem[largest])
+        largest = l;
+    if (r < N && elem[r] > elem[largest])
+        largest = r;
+    if (largest != i)
+    {
+        admin.window_check();
+        std::swap(elem.at(i), elem.at(largest));
+        heapify(elem, N, largest);
+        global_swap_index = i;
+        admin.show(elem);
+    }
+
+}
+
+void heap_sort(std::vector<int>& elem)
+{
+    for (int i = elem.size() / 2 - 1; i >= 0; i--)
+    {
+        heapify(elem, elem.size(), i);
+    }
+
+
+    for (int i = elem.size() - 1; i > 0; i--)
+    {
+        admin.window_check();
+        std::swap(elem.at(0), elem.at(i));
+        global_inner_pointer_index = i;
+        admin.show(elem);
+        heapify(elem, i, 0);
+
+    }
+}
+
