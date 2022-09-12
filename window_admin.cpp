@@ -157,8 +157,6 @@ void window_admin::window_check()
 
 void window_admin::show(std::vector<int>& elem)
 {
-	sf::RectangleShape rectangle_final;
-	sf::RectangleShape rectangle_main;
 	window.clear();
 
 	int interval = 0;
@@ -180,19 +178,17 @@ void window_admin::show(std::vector<int>& elem)
 		{
 			int tmp = elem.at(i);
 
-
-
-			rectangle_main.setSize(sf::Vector2f(10, -10 * tmp));
+			rectangle.setSize(sf::Vector2f(10, -10 * tmp));
 			if (i == global_swap_index)
-				rectangle_main.setFillColor(sf::Color(100, 100, 200));
+				rectangle.setFillColor(sf::Color(100, 100, 200));
 			else if (i == global_inner_pointer_index)
-				rectangle_main.setFillColor(sf::Color(100, 200, 100));
+				rectangle.setFillColor(sf::Color(100, 200, 100));
 			else if (i == global_outer_pointer_index)
-				rectangle_main.setFillColor(sf::Color(200, 0, 0));
+				rectangle.setFillColor(sf::Color(200, 0, 0));
 			else
-				rectangle_main.setFillColor(sf::Color(200, 200, 200));
-			rectangle_main.setPosition(sf::Vector2f(20 + width * i * 3, 600));
-			window.draw(rectangle_main);
+				rectangle.setFillColor(sf::Color(200, 200, 200));
+			rectangle.setPosition(sf::Vector2f(20 + width * i * 3, 600));
+			window.draw(rectangle);
 		}
 	}
 
@@ -201,13 +197,16 @@ void window_admin::show(std::vector<int>& elem)
 	{
 		window.clear();
 		window.display();
+		window.clear();
+		window.display();
 		for (int i = 0; i < elem.size(); i++)
 		{
 			int tmp = elem.at(i);
-			rectangle_final.setSize(sf::Vector2f(10, -10 * tmp));
-			rectangle_final.setFillColor(sf::Color(100, 100, 200));
-			rectangle_final.setPosition(sf::Vector2f(20 + width * i * 3, 600));
-			window.draw(rectangle_final);
+
+			rectangle.setSize(sf::Vector2f(10, -10 * tmp));
+			rectangle.setFillColor(sf::Color(100, 100, 200));
+			rectangle.setPosition(sf::Vector2f(20 + width * i * 3, 600));
+			window.draw(rectangle);
 			window.display();
 			Sleep(15);
 
