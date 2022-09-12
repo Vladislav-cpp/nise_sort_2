@@ -5,6 +5,22 @@ extern int global_inner_pointer_index;
 extern int global_outer_pointer_index;
 extern bool global_sort_end;
 
+window_admin::window_admin() :window(sf::VideoMode(800, 800), "Zheka LOH")
+{
+	Tbackground.loadFromFile("images/background/background.png");
+	Sprite_Tbackground.setTexture(Tbackground);
+	Sprite_Tbackground.setTextureRect(sf::IntRect(0, 0, 800,800));
+	Sprite_Tbackground.setPosition(0, 0);
+
+
+
+	Tbuttons.loadFromFile("images/buttons/m_merged (45).png");
+	Sprite_Tbuttons.setTexture(Tbuttons);
+	//Sprite_Tbuttons.setTextureRect(sf::IntRect(0, 0, 512,2048));
+	Sprite_Tbuttons.setScale(sf::Vector2f(0.25f, 0.25f));
+
+}
+
 int window_admin::login_window()
 {
 	int number_sort = 0;
@@ -147,6 +163,46 @@ int window_admin::login_window()
 	return number_sort;
 }
 
+int window_admin::sort_selection_window()
+{
+	bool sort_selection_window_is_open = true;
+	while (sort_selection_window_is_open)
+	{
+		window_check();
+		window.draw(Sprite_Tbackground);
+
+		for (int i = 0; i <= 1536; i += 512)
+		{
+			Sprite_Tbuttons.setTextureRect(sf::IntRect(0,0+i, 512, 512));
+			Sprite_Tbuttons.setPosition(100, 100+i*0.3);
+			window.draw(Sprite_Tbuttons);
+		}
+
+
+		for (int i = 0; i <= 1536; i += 512)
+		{
+		    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		    {
+		    	  if (sf::IntRect(100, 100 + i * 0.3, 512, 512).contains(sf::Mouse::getPosition(window)))
+		    	  {
+		    	  	//text_ = true;
+		    	  	sort_selection_window_is_open = false;
+		    	  	//number_sort = 0;
+					return i / 512;
+		    	  }
+		    }
+		}
+
+
+
+		window.display();
+
+	}
+
+
+}
+
+
 bool window_admin::register_fun(int i, void (*sort_fun)(std::vector<int>& V))
 {
 
@@ -164,11 +220,14 @@ void window_admin::window_check()
 		if (event.type == sf::Event::Closed)
 			window.close();
 	}
+
+
 }
 
 void window_admin::show(std::vector<int>& elem)
 {
 	window.clear();
+
 
 	int interval = 0;
 	int width = 0;
@@ -206,10 +265,10 @@ void window_admin::show(std::vector<int>& elem)
 
 	if (global_sort_end == true)
 	{
-		window.clear();
+		//window.clear();
 		window.display();
 		window.clear();
-		window.display();
+		//window.display();
 		for (int i = 0; i < elem.size(); i++)
 		{
 			int tmp = elem.at(i);
@@ -242,13 +301,21 @@ void window_admin::run()
 	while (window.isOpen())
 	{
 
-		int number_sort = login_window();
+		int number_sort = sort_selection_window();//login_window();
 		size_t SIZE = 50;
 
 		std::vector<int> vc(SIZE);
 		for (int i = 0; i < SIZE; i++)
 			vc.at(i) = rand() % SIZE + 1;
+
 		mas_sort_fun.at(number_sort)(vc);
+
+		//sort_selection_window(); //window.draw(Sprite_Tbackground);
+
+		//vector_setup_window();
+
+		//vector_sort_window();
+
 
 	}
 }
