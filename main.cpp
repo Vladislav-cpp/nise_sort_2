@@ -11,6 +11,7 @@ int global_inner_pointer_index = 0;
 int global_outer_pointer_index = 0;
 bool global_sort_end = false;
 window_admin admin;
+
 //
 int main()
 {
@@ -24,7 +25,7 @@ int main()
 	admin.register_fun(6, heap_sort);
 	admin.run();
 
-
+	std::vector<int> rt(10, 2);
 	return 0;
 }
 

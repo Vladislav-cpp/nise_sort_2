@@ -5,6 +5,8 @@ extern int global_inner_pointer_index;
 extern int global_outer_pointer_index;
 extern bool global_sort_end;
 
+std::vector<int> rt(10, 2);
+
 void bubble_sort(std::vector<int>& elem)
 {
     int i, j;

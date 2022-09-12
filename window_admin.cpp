@@ -65,16 +65,27 @@ int window_admin::login_window()
 		window_check();
 
 		if (sf::IntRect(150, 150, 50, 50).contains(sf::Mouse::getPosition(window))) { rectangle2.setFillColor(sf::Color(255, 126, 0)); }
+
 		if (!(sf::IntRect(150, 150, 50, 50).contains(sf::Mouse::getPosition(window)))) { rectangle2.setFillColor(sf::Color(0, 127, 255)); }
+
 		if (sf::IntRect(150, 250, 50, 50).contains(sf::Mouse::getPosition(window))) { rectangle3.setFillColor(sf::Color(255, 126, 0)); }
+
 		if (!(sf::IntRect(150, 250, 50, 50).contains(sf::Mouse::getPosition(window)))) { rectangle3.setFillColor(sf::Color(0, 127, 255)); }
+
 		if (sf::IntRect(150, 350, 50, 50).contains(sf::Mouse::getPosition(window))) { rectangle4.setFillColor(sf::Color(255, 126, 0)); }
+
 		if (!(sf::IntRect(150, 350, 50, 50).contains(sf::Mouse::getPosition(window)))) { rectangle4.setFillColor(sf::Color(0, 127, 255)); }
+
 		if (sf::IntRect(150, 450, 50, 50).contains(sf::Mouse::getPosition(window))) { rectangle5.setFillColor(sf::Color(255, 126, 0)); }
+
 		if (!(sf::IntRect(150, 450, 50, 50).contains(sf::Mouse::getPosition(window)))) { rectangle5.setFillColor(sf::Color(0, 127, 255)); }
+
 		if (sf::IntRect(150, 550, 50, 50).contains(sf::Mouse::getPosition(window))) { rectangle6.setFillColor(sf::Color(255, 126, 0)); }
+
 		if (!(sf::IntRect(150, 550, 50, 50).contains(sf::Mouse::getPosition(window)))) { rectangle6.setFillColor(sf::Color(0, 127, 255)); }
+
 		if (sf::IntRect(150, 650, 50, 50).contains(sf::Mouse::getPosition(window))) { rectangle7.setFillColor(sf::Color(255, 126, 0)); }
+
 		if (!(sf::IntRect(150, 650, 50, 50).contains(sf::Mouse::getPosition(window)))) { rectangle7.setFillColor(sf::Color(0, 127, 255)); }
 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
