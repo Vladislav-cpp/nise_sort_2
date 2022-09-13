@@ -5,7 +5,6 @@ extern int global_inner_pointer_index;
 extern int global_outer_pointer_index;
 extern bool global_sort_end;
 
-std::vector<int> rt(10, 2);
 
 void bubble_sort(std::vector<int>& elem)
 {
@@ -74,6 +73,7 @@ void quick_sort_next(std::vector<int>& elem, int first, int last)
     if (j > first)
         quick_sort_next(elem, first, j);
 }
+
 void quick_sort(std::vector<int>& elem)
 {
     quick_sort_next(elem, 0, elem.size() - 1);
