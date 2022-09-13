@@ -8,6 +8,7 @@ extern int global_outer_pointer_index;
 extern bool global_sort_end;
 
 window_admin::window_admin() :window(sf::VideoMode(800, 800), "Zheka LOH"), vector_of_values(30, 5)
+, button_sound(button_sound_Buffer), sorting_sound(sorting_sound_Buffer)
 {
 	Tbackground.loadFromFile("images/background/background.png");
 	Sprite_Tbackground.setTexture(Tbackground);
@@ -22,6 +23,8 @@ window_admin::window_admin() :window(sf::VideoMode(800, 800), "Zheka LOH"), vect
 	STbutton_settings.setTexture(Tbutton_settings);
 	STbutton_settings.setScale(sf::Vector2f(0.1f, 0.1f));
 
+	button_sound_Buffer.loadFromFile("sound and music/alarm-clock-button-click_z17d0vno.ogg");
+	sorting_sound_Buffer.loadFromFile("sound and music/ekstrennyiy-avariynyiy-uskoryayuschiysya-signal_K8YXbSgB.ogg");
 }
 
 //remove this horror
@@ -229,6 +232,7 @@ void window_admin::window_check()
 
 void window_admin::show(std::vector<int>& elem)
 {
+	std::cout << "-\n";
 	window.clear();
 
 
@@ -261,13 +265,16 @@ void window_admin::show(std::vector<int>& elem)
 			else
 				rectangle.setFillColor(sf::Color(200, 200, 200));
 			rectangle.setPosition(sf::Vector2f(20 + width * i * 3, 600));
+
 			window.draw(rectangle);
+			
 		}
 	}
 
 
 	if (global_sort_end == true)
 	{
+
 		//window.clear();
 		window.display();
 		window.clear();
@@ -278,25 +285,24 @@ void window_admin::show(std::vector<int>& elem)
 
 			rectangle.setSize(sf::Vector2f(10, -10 * tmp));
 			rectangle.setFillColor(sf::Color(100, 100, 200));
-			rectangle.setPosition(sf::Vector2f(20 + width * i * 3, 600));
+			rectangle.setPosition(sf::Vector2f(20 + width * i * 3, 600));			
+
 			window.draw(rectangle);
 			window.display();
 			Sleep(15);
+			
 
 		}
 		global_sort_end = false;
 	}
 
-
-
-
-
-
-
 	window.display();
+	
+	sorting_sound.play();
 
+	
 	Sleep(15);
-
+	//Sleep(100);
 }
 
 void window_admin::draw_a_vector()
@@ -356,18 +362,24 @@ void window_admin::vector_setup_window()
 			switch (active_button)
 			{
 			case active_button_settings::back: //difficult to implement //let's forget it for now
+				button_sound.play();
 				active_button = active_button_settings::nothing;break;
 
-			case active_button_settings::run:			
+			case active_button_settings::run:
+				button_sound.play();
+				vector_setup_window_is_open = false;
 				active_button = active_button_settings::nothing;break;
 
 			case active_button_settings::to_mix:
+				button_sound.play();
 				for (int i = 0; i < vector_size; i++)//add a reboot timer
 					vector_of_values.at(i) = rand() % values_in_a_vector + 1;			
 				active_button = active_button_settings::nothing;break;
 
 			case active_button_settings::sound_switching:
+				button_sound.play();
 				active_button = active_button_settings::nothing;break;
+				
 			}
 		}
                  //vector_setup_window_is_open = false;
@@ -392,7 +404,7 @@ void window_admin::run()
 		//std::vector<int> vc(SIZE);
 		//for (int i = 0; i < SIZE; i++)
 		//	vc.at(i) = rand() % SIZE + 1;
-		//mas_sort_fun.at(number_sort)(vc);
+		mas_sort_fun.at(number_sort)(vector_of_values);
 
 
 

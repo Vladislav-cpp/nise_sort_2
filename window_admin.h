@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-
+#include <SFML/Audio.hpp>
 
 
 class window_admin
@@ -30,7 +30,15 @@ private:
 	//button for settings
 	sf::Texture Tbutton_settings;
 	sf::Sprite STbutton_settings;
-	
+
+	//music and sounds
+	sf::SoundBuffer button_sound_Buffer;//-	
+	sf::Sound button_sound;//-
+
+	sf::SoundBuffer sorting_sound_Buffer;//-	
+	sf::Sound sorting_sound;//-
+
+
 	enum class active_button_settings { nothing=-1, back, run, to_mix, sound_switching};
 
 	int login_window();// -delete!!!!!!!!
