@@ -5,22 +5,24 @@ extern int global_inner_pointer_index;
 extern int global_outer_pointer_index;
 extern bool global_sort_end;
 
-window_admin::window_admin() :window(sf::VideoMode(800, 800), "Zheka LOH")
+window_admin::window_admin() :window(sf::VideoMode(800, 800), "Zheka LOH"), vector_of_values(30, 0)
 {
 	Tbackground.loadFromFile("images/background/background.png");
 	Sprite_Tbackground.setTexture(Tbackground);
 	Sprite_Tbackground.setTextureRect(sf::IntRect(0, 0, 800,800));
 	Sprite_Tbackground.setPosition(0, 0);
 
+	Tbutton_number_sort.loadFromFile("images/buttons/m_merged (45).png");
+	STbutton_number_sort.setTexture(Tbutton_number_sort);
+	STbutton_number_sort.setScale(sf::Vector2f(0.25f, 0.25f));
 
-
-	Tbuttons.loadFromFile("images/buttons/m_merged (45).png");
-	Sprite_Tbuttons.setTexture(Tbuttons);
-	//Sprite_Tbuttons.setTextureRect(sf::IntRect(0, 0, 512,2048));
-	Sprite_Tbuttons.setScale(sf::Vector2f(0.25f, 0.25f));
+	Tbutton_settings.loadFromFile("images/buttons/m_merged (55).png");
+	STbutton_settings.setTexture(Tbutton_settings);
+	STbutton_settings.setScale(sf::Vector2f(0.1f, 0.1f));
 
 }
 
+//remove this horror
 int window_admin::login_window()
 {
 	int number_sort = 0;
@@ -173,9 +175,9 @@ int window_admin::sort_selection_window()
 
 		for (int i = 0; i <= 1536; i += 512)
 		{
-			Sprite_Tbuttons.setTextureRect(sf::IntRect(0,0+i, 512, 512));
-			Sprite_Tbuttons.setPosition(100, 100+i*0.3);
-			window.draw(Sprite_Tbuttons);
+			STbutton_number_sort.setTextureRect(sf::IntRect(0,0+i, 512, 512));
+			STbutton_number_sort.setPosition(100, 100+i*0.3);
+			window.draw(STbutton_number_sort);
 		}
 
 
@@ -183,7 +185,7 @@ int window_admin::sort_selection_window()
 		{
 		    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		    {
-		    	  if (sf::IntRect(100, 100 + i * 0.3, 512, 512).contains(sf::Mouse::getPosition(window)))
+		    	  if (sf::IntRect(100, 100 + i * 0.3, 128, 128).contains(sf::Mouse::getPosition(window)))
 		    	  {
 		    	  	//text_ = true;
 		    	  	sort_selection_window_is_open = false;
@@ -201,7 +203,6 @@ int window_admin::sort_selection_window()
 
 
 }
-
 
 bool window_admin::register_fun(int i, void (*sort_fun)(std::vector<int>& V))
 {
@@ -296,21 +297,65 @@ void window_admin::show(std::vector<int>& elem)
 
 }
 
+void window_admin::vector_setup_window()
+{
+	bool vector_setup_window_is_open = true;
+	while (vector_setup_window_is_open)
+	{
+		window_check();
+		window.draw(Sprite_Tbackground);
+
+		Tbutton_settings;
+		STbutton_settings;
+
+		for (int i = 0; i <= 2103; i += 701)
+		{
+			STbutton_settings.setTextureRect(sf::IntRect(0, 0 + i, 701, 701));
+			STbutton_settings.setPosition(100+ i * 0.2+60, 100 );
+			window.draw(STbutton_settings);
+		}
+
+
+		for (int i = 0; i <= 2103; i += 701)
+		{
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			{
+				if (sf::IntRect(100+ i * 0.3, 100 , 701, 701).contains(sf::Mouse::getPosition(window)))
+				{
+					
+					vector_setup_window_is_open = false;
+					
+					
+				}
+			}
+		}
+
+
+
+		window.display();
+
+	}
+
+}
+
 void window_admin::run()
 {
 	while (window.isOpen())
 	{
 
 		int number_sort = sort_selection_window();//login_window();
-		size_t SIZE = 50;
+		vector_setup_window();
 
-		std::vector<int> vc(SIZE);
-		for (int i = 0; i < SIZE; i++)
-			vc.at(i) = rand() % SIZE + 1;
 
-		mas_sort_fun.at(number_sort)(vc);
+		//size_t SIZE = 50;
+		//std::vector<int> vc(SIZE);
+		//for (int i = 0; i < SIZE; i++)
+		//	vc.at(i) = rand() % SIZE + 1;
+		//mas_sort_fun.at(number_sort)(vc);
 
-		//sort_selection_window(); //window.draw(Sprite_Tbackground);
+
+
+		//sort_selection_window(); //window.draw(Sprite_Tbackground); done +
 
 		//vector_setup_window();
 

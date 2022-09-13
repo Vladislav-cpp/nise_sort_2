@@ -14,19 +14,27 @@ private:
 	sf::RectangleShape rectangle;
 	std::vector<void(*)(std::vector<int>& v)> mas_sort_fun;
 
+	
+	std::vector<int> vector_of_values;
+
 	// background;
 	sf::Texture Tbackground;
 	sf::Sprite Sprite_Tbackground;
 
-	// sort selection buttons
-	sf::Texture Tbuttons;//-
-	sf::Sprite Sprite_Tbuttons;//-
+	//buttons sort selection 
+	sf::Texture Tbutton_number_sort;
+	sf::Sprite STbutton_number_sort;
+
+	//button for settings
+	sf::Texture Tbutton_settings;
+	sf::Sprite STbutton_settings;
+
 
 	int login_window();// -delete!!!!!!!!
 
 	int sort_selection_window();
 
-
+	void vector_setup_window();
 public:
 	window_admin();// 
 

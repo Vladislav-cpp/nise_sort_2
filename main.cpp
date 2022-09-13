@@ -15,6 +15,8 @@ window_admin admin;
 //
 int main()
 {
+
+
 	srand(static_cast<unsigned>(time(nullptr)));
 
 	admin.register_fun(1, bubble_sort);
