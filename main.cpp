@@ -15,8 +15,6 @@ window_admin admin;
 //
 int main()
 {
-
-
 	srand(static_cast<unsigned>(time(nullptr)));
 
 	admin.register_fun(1, bubble_sort);
@@ -25,9 +23,9 @@ int main()
 	admin.register_fun(4, selection_sort);
 	admin.register_fun(5, merge_sort);
 	admin.register_fun(6, heap_sort);
+
 	admin.run();
 
-	std::vector<int> rt(10, 2);
 	return 0;
 }
 

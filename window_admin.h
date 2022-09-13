@@ -14,8 +14,10 @@ private:
 	sf::RectangleShape rectangle;
 	std::vector<void(*)(std::vector<int>& v)> mas_sort_fun;
 
-	
-	std::vector<int> vector_of_values;
+	//points relating to the vector of values
+	std::vector<int> vector_of_values; // ----std::iota()----
+	int vector_size = 30;
+	int values_in_a_vector = 30;
 
 	// background;
 	sf::Texture Tbackground;
@@ -28,14 +30,18 @@ private:
 	//button for settings
 	sf::Texture Tbutton_settings;
 	sf::Sprite STbutton_settings;
-
+	
+	enum class active_button_settings { nothing=-1, back, run, to_mix, sound_switching};
 
 	int login_window();// -delete!!!!!!!!
 
 	int sort_selection_window();
 
 	void vector_setup_window();
+
+	void draw_a_vector();
 public:
+	
 	window_admin();// 
 
 	bool register_fun(int i, void (*sort_fun)(std::vector<int>& V));

@@ -1,11 +1,13 @@
 #include "window_admin.h"
 #include <windows.h>
+#include <iostream>
+
 extern int global_swap_index;
 extern int global_inner_pointer_index;
 extern int global_outer_pointer_index;
 extern bool global_sort_end;
 
-window_admin::window_admin() :window(sf::VideoMode(800, 800), "Zheka LOH"), vector_of_values(30, 0)
+window_admin::window_admin() :window(sf::VideoMode(800, 800), "Zheka LOH"), vector_of_values(30, 5)
 {
 	Tbackground.loadFromFile("images/background/background.png");
 	Sprite_Tbackground.setTexture(Tbackground);
@@ -175,7 +177,7 @@ int window_admin::sort_selection_window()
 
 		for (int i = 0; i <= 1536; i += 512)
 		{
-			STbutton_number_sort.setTextureRect(sf::IntRect(0,0+i, 512, 512));
+			STbutton_number_sort.setTextureRect(sf::IntRect(0,0+i, 512, 512));		
 			STbutton_number_sort.setPosition(100, 100+i*0.3);
 			window.draw(STbutton_number_sort);
 		}
@@ -297,39 +299,78 @@ void window_admin::show(std::vector<int>& elem)
 
 }
 
+void window_admin::draw_a_vector()
+{
+	
+	int width = 250 / vector_of_values.size();
+	for (int i = 0; i < vector_of_values.size(); i++)
+	{
+		int tmp = vector_of_values.at(i);
+
+		rectangle.setSize(sf::Vector2f(10, -10 * tmp));
+		rectangle.setFillColor(sf::Color(100, 100, 200));
+		rectangle.setPosition(sf::Vector2f(20 + width * i * 3, 600));
+		window.draw(rectangle);
+	}
+	
+}
+
 void window_admin::vector_setup_window()
 {
+	active_button_settings active_button = active_button_settings::nothing;//looks terrible//use a template or something else
 	bool vector_setup_window_is_open = true;
+	
+	window.clear();
+	window.display();
+
 	while (vector_setup_window_is_open)
 	{
 		window_check();
+		
 		window.draw(Sprite_Tbackground);
-
-		Tbutton_settings;
-		STbutton_settings;
+		draw_a_vector();
 
 		for (int i = 0; i <= 2103; i += 701)
 		{
 			STbutton_settings.setTextureRect(sf::IntRect(0, 0 + i, 701, 701));
-			STbutton_settings.setPosition(100+ i * 0.2+60, 100 );
+			STbutton_settings.setPosition(100 + i * 0.2 + 60, 100);
 			window.draw(STbutton_settings);
 		}
-
 
 		for (int i = 0; i <= 2103; i += 701)
 		{
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 			{
-				if (sf::IntRect(100+ i * 0.3, 100 , 701, 701).contains(sf::Mouse::getPosition(window)))
-				{
-					
-					vector_setup_window_is_open = false;
-					
-					
+				if (sf::IntRect(100+ i * 0.2 + 60, 100 , 70.1, 70.1).contains(sf::Mouse::getPosition(window)))
+				{			
+					active_button = active_button_settings(i / 701);
 				}
 			}
 		}
+		
 
+		
+
+		if (active_button != active_button_settings::nothing)
+		{
+			switch (active_button)
+			{
+			case active_button_settings::back: //difficult to implement //let's forget it for now
+				active_button = active_button_settings::nothing;break;
+
+			case active_button_settings::run:			
+				active_button = active_button_settings::nothing;break;
+
+			case active_button_settings::to_mix:
+				for (int i = 0; i < vector_size; i++)//add a reboot timer
+					vector_of_values.at(i) = rand() % values_in_a_vector + 1;			
+				active_button = active_button_settings::nothing;break;
+
+			case active_button_settings::sound_switching:
+				active_button = active_button_settings::nothing;break;
+			}
+		}
+                 //vector_setup_window_is_open = false;
 
 
 		window.display();
