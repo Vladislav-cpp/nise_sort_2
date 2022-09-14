@@ -2,10 +2,6 @@
 #include <windows.h>
 #include <iostream>
 
-extern int global_swap_index;
-extern int global_inner_pointer_index;
-extern int global_outer_pointer_index;
-extern bool global_sort_end;
 
 window_admin::window_admin() :window(sf::VideoMode(800, 800), "Zheka LOH"), vector_of_values(30, 5)
 , button_sound(button_sound_Buffer), sorting_sound(sorting_sound_Buffer)
@@ -230,7 +226,7 @@ void window_admin::window_check()
 
 }
 
-void window_admin::show(std::vector<int>& elem)
+void window_admin::show(std::vector<int>& elem, indexInfo Info)
 {
 	std::cout << "-\n";
 	window.clear();
@@ -249,18 +245,18 @@ void window_admin::show(std::vector<int>& elem)
 
 	width = interval = interval_plus_width / 2;
 
-	if (global_sort_end == false)
+	if (Info.sort_end == false)
 	{
 		for (int i = 0; i < elem.size(); i++)
 		{
 			int tmp = elem.at(i);
 
 			rectangle.setSize(sf::Vector2f(10, -10 * tmp));
-			if (i == global_swap_index)
+			if (i == Info.swap_index)
 				rectangle.setFillColor(sf::Color(100, 100, 200));
-			else if (i == global_inner_pointer_index)
+			else if (i == Info.inner_pointer_index)
 				rectangle.setFillColor(sf::Color(100, 200, 100));
-			else if (i == global_outer_pointer_index)
+			else if (i == Info.outer_pointer_index)
 				rectangle.setFillColor(sf::Color(200, 0, 0));
 			else
 				rectangle.setFillColor(sf::Color(200, 200, 200));
@@ -272,7 +268,7 @@ void window_admin::show(std::vector<int>& elem)
 	}
 
 
-	if (global_sort_end == true)
+	if (Info.sort_end == true)
 	{
 
 		//window.clear();
@@ -293,7 +289,7 @@ void window_admin::show(std::vector<int>& elem)
 			
 
 		}
-		global_sort_end = false;
+		Info.sort_end = false;
 	}
 
 	window.display();

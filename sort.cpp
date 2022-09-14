@@ -1,40 +1,89 @@
-#include "sort.h"
+#include "window_admin.h"
 extern window_admin admin;
-extern int global_swap_index;
-extern int global_inner_pointer_index;
-extern int global_outer_pointer_index;
-extern bool global_sort_end;
 
 
 void bubble_sort(std::vector<int>& elem)
 {
+    indexInfo Info;
     int i, j;
     for (i = 0; i < elem.size() - 1; i++)
     {
-        global_outer_pointer_index = i;
+        Info.outer_pointer_index = i;
         for (j = 0; j < elem.size() - i - 1; j++)
         {
             admin.window_check();
-            global_inner_pointer_index = j;
+            Info.inner_pointer_index = j;
             if (elem.at(j) > elem.at(j + 1))
             {
-                global_swap_index = j;
+                Info.swap_index = j;
                 std::swap(elem.at(j), elem.at(j + 1));
-                admin.show(elem);
+                admin.show(elem, Info);
             }
             else
-                admin.show(elem);
+                admin.show(elem, Info);
         }
     }
 
-    global_sort_end = true;
-    admin.show(elem);
+    Info.sort_end = true;
+    admin.show(elem, Info);
 
 }
 
-void quick_sort_next(std::vector<int>& elem, int first, int last)
+
+void selection_sort(std::vector<int>& elem)
+{
+    indexInfo Info;
+    int i, j;
+    for (i = 0; i < elem.size() - 1; i++)
+    {
+        Info.outer_pointer_index = i;
+        for (j = i + 1; j < elem.size(); j++)
+        {
+            Info.inner_pointer_index = j;
+            admin.window_check();
+            if (elem.at(j) < elem.at(i))
+            {
+                Info.swap_index = j;
+                std::swap(elem.at(j), elem.at(i));
+            }
+            admin.show(elem, Info);
+        }
+    }
+
+    Info.sort_end = true;
+    admin.show(elem, Info);
+
+}
+
+
+void insertion_sort(std::vector<int>& elem)
+{
+    indexInfo Info;
+    for (int i = 1; i < elem.size(); i++)
+    {
+        int key = elem.at(i);
+        Info.outer_pointer_index = i;
+
+        int j;
+        for (j = i - 1; j >= 0 && elem.at(j) > key; j--)
+        {
+            Info.inner_pointer_index = j;
+            admin.window_check();
+            Info.swap_index = j + 1;
+            elem.at(j + 1) = elem.at(j);
+            admin.show(elem, Info);
+        }
+        elem.at(j + 1) = key;
+    }
+    Info.sort_end = true;
+    admin.show(elem, Info);
+}
+
+
+void quick_sort_next(std::vector<int>& elem, int first, int last, indexInfo Info)
 
 {
+ 
     int middle = elem.at((first + last) / 2);
     int i = first;
     int j = last;
@@ -44,90 +93,46 @@ void quick_sort_next(std::vector<int>& elem, int first, int last)
         while (elem.at(i) < middle)
         {
             i++;
-            global_outer_pointer_index = i;
-            admin.show(elem);
+            Info.outer_pointer_index = i;
+            admin.show(elem, Info);
         }
             
         while (elem.at(j) > middle)
         {
             j--;
-            global_inner_pointer_index = j;
-            admin.show(elem);
+            Info.inner_pointer_index = j;
+            admin.show(elem, Info);
         }
 
         if (i <= j)
         {
             admin.window_check();
-            global_swap_index = j;
+            Info.swap_index = j;
             std::swap(elem.at(i), elem.at(j));
             i++;
             j--;
-            admin.show(elem);
+            admin.show(elem, Info);
         }
 
     } while (i <= j);
 
 
     if (i < last)
-        quick_sort_next(elem, i, last);
+        quick_sort_next(elem, i, last, Info);
     if (j > first)
-        quick_sort_next(elem, first, j);
+        quick_sort_next(elem, first, j, Info);
 }
 
 void quick_sort(std::vector<int>& elem)
 {
-    quick_sort_next(elem, 0, elem.size() - 1);
-    global_sort_end = true;
-    admin.show(elem);
+    indexInfo Info;
+    quick_sort_next(elem, 0, elem.size() - 1, Info);
+    Info.sort_end = true;
+    admin.show(elem, Info);
 }
 
-void selection_sort(std::vector<int>& elem)
-{
-    int i, j;
-    for (i = 0; i < elem.size() - 1; i++)
-    {
-        global_outer_pointer_index = i;
-        for (j = i + 1; j < elem.size(); j++)
-        {
-            global_inner_pointer_index = j;
-            admin.window_check();
-            if (elem.at(j) < elem.at(i))
-            {
-                global_swap_index = j;
-                std::swap(elem.at(j), elem.at(i));
-            }
-            admin.show(elem);
-        }
-    }
 
-    global_sort_end = true;
-    admin.show(elem);
-
-}
-
-void insertion_sort(std::vector<int>& elem)
-{
-    for (int i = 1; i < elem.size(); i++)
-    {
-        int key = elem.at(i);
-        global_outer_pointer_index = i;
-
-        int j;
-        for (j = i - 1; j >= 0 && elem.at(j) > key; j--)
-        {
-            global_inner_pointer_index = j;
-            admin.window_check();
-            global_swap_index = j+1;
-            elem.at(j + 1) = elem.at(j);
-            admin.show(elem);
-        }
-        elem.at(j + 1) = key;
-    }
-    global_sort_end = true;
-    admin.show(elem);
-}
-
-void merge(std::vector<int>& elem, int const left,int const mid, int const right)
+void merge(std::vector<int>& elem, int const left,int const mid, int const right, indexInfo Info)
 {
     int const subArrayOne = mid - left + 1;
     int const subArrayTwo = right - mid;
@@ -148,70 +153,74 @@ void merge(std::vector<int>& elem, int const left,int const mid, int const right
     {
         if (leftArray[indexOfSubArrayOne] <= rightArray[indexOfSubArrayTwo]) 
         {
-            global_inner_pointer_index = indexOfMergedArray;
-            global_swap_index = indexOfSubArrayOne;
+            Info.inner_pointer_index = indexOfMergedArray;
+            Info.swap_index = indexOfSubArrayOne;
             admin.window_check();
             elem.at(indexOfMergedArray) = leftArray.at(indexOfSubArrayOne);
             indexOfSubArrayOne++;
-            admin.show(elem);
+            admin.show(elem, Info);
         }
         else 
         {
-            global_inner_pointer_index = indexOfMergedArray;
-            global_swap_index = indexOfSubArrayTwo;
+            Info.inner_pointer_index = indexOfMergedArray;
+            Info.swap_index = indexOfSubArrayTwo;
             admin.window_check();
             elem.at(indexOfMergedArray) = rightArray.at(indexOfSubArrayTwo);
             indexOfSubArrayTwo++;
-            admin.show(elem);
+            admin.show(elem, Info);
         }
         indexOfMergedArray++;
     }
 
     while (indexOfSubArrayOne < subArrayOne) 
     {
-        global_inner_pointer_index = indexOfMergedArray;
-        global_swap_index = indexOfSubArrayOne;
+        Info.inner_pointer_index = indexOfMergedArray;
+        Info.swap_index = indexOfSubArrayOne;
         admin.window_check();
         elem.at(indexOfMergedArray) = leftArray.at(indexOfSubArrayOne);
         indexOfSubArrayOne++;
         indexOfMergedArray++;
-        admin.show(elem);
+        admin.show(elem, Info);
     }
 
     while (indexOfSubArrayTwo < subArrayTwo) 
     {
-        global_inner_pointer_index = indexOfMergedArray;
-        global_swap_index = indexOfSubArrayTwo;
+        Info.inner_pointer_index = indexOfMergedArray;
+        Info.swap_index = indexOfSubArrayTwo;
         admin.window_check();
         elem.at(indexOfMergedArray) = rightArray.at(indexOfSubArrayTwo);
         indexOfSubArrayTwo++;
         indexOfMergedArray++;
-        admin.show(elem);
+        admin.show(elem, Info);
     }
 }
 
-void merge_sort_next(std::vector<int>& elem, int const begin, int const end)
+void merge_sort_next(std::vector<int>& elem, int const begin, int const end, indexInfo Info)
 {
+
     if (begin >= end)
         return;
     auto mid = begin + (end - begin) / 2;
-    global_outer_pointer_index = mid;
+    Info.outer_pointer_index = mid;
     admin.window_check();
-    merge_sort_next(elem, begin, mid);
-    merge_sort_next(elem, mid + 1, end);
-    merge(elem, begin, mid, end);
-    admin.show(elem);
+    merge_sort_next(elem, begin, mid, Info);
+    merge_sort_next(elem, mid + 1, end, Info);
+    merge(elem, begin, mid, end, Info);
+    admin.show(elem, Info);
 }
 
 void merge_sort(std::vector<int>& elem)
 {
-    merge_sort_next(elem, 0, elem.size() - 1);
-    global_sort_end = true;
-    admin.show(elem);
+    indexInfo Info;
+    merge_sort_next(elem, 0, elem.size() - 1, Info);
+    Info.sort_end = true;
+    admin.show(elem, Info);
 }
 
-void heapify(std::vector<int>& elem, int N, int i)
+
+void heapify(std::vector<int>& elem, int N, int i, indexInfo Info)
 {
+
     int largest = i;
 
     int l = 2 * i + 1;
@@ -225,18 +234,19 @@ void heapify(std::vector<int>& elem, int N, int i)
     {
         admin.window_check();
         std::swap(elem.at(i), elem.at(largest));
-        heapify(elem, N, largest);
-        global_swap_index = i;
-        admin.show(elem);
+        heapify(elem, N, largest, Info);
+        Info.swap_index = i;
+        admin.show(elem, Info);
     }
 
 }
 
 void heap_sort(std::vector<int>& elem)
 {
+    indexInfo Info;
     for (int i = elem.size() / 2 - 1; i >= 0; i--)
     {
-        heapify(elem, elem.size(), i);
+        heapify(elem, elem.size(), i, Info);
     }
 
 
@@ -244,9 +254,9 @@ void heap_sort(std::vector<int>& elem)
     {
         admin.window_check();
         std::swap(elem.at(0), elem.at(i));
-        global_inner_pointer_index = i;
-        admin.show(elem);
-        heapify(elem, i, 0);
+        Info.inner_pointer_index = i;
+        admin.show(elem, Info);
+        heapify(elem, i, 0, Info);
 
     }
 }

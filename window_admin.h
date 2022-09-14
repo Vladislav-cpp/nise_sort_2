@@ -2,6 +2,20 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
+void bubble_sort(std::vector<int>& elem);
+void quick_sort(std::vector<int>& elem);
+void selection_sort(std::vector<int>& elem);
+void insertion_sort(std::vector<int>& elem);
+void merge_sort(std::vector<int>& elem);
+void heap_sort(std::vector<int>& elem);
+
+struct indexInfo
+{
+	int swap_index = 0;
+	int inner_pointer_index = 0;
+	int outer_pointer_index = 0;
+	bool sort_end = false;
+};
 
 class window_admin
 {
@@ -56,7 +70,7 @@ public:
 
 	void window_check();
 
-	void show(std::vector<int>& elem);
+	void show(std::vector<int>& elem, indexInfo Info);
 
 	void run();
 
