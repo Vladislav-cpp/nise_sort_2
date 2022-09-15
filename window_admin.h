@@ -68,7 +68,7 @@ public:
 
 	bool register_fun(int i, void (*sort_fun)(std::vector<int>& V));
 
-	void window_check();
+	int window_check();
 
 	void show(std::vector<int>& elem, indexInfo Info);
 

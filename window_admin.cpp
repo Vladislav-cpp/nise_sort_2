@@ -23,183 +23,43 @@ window_admin::window_admin() :window(sf::VideoMode(800, 800), "Zheka LOH"), vect
 	sorting_sound_Buffer.loadFromFile("sound and music/ekstrennyiy-avariynyiy-uskoryayuschiysya-signal_K8YXbSgB.ogg");
 }
 
-//remove this horror
-int window_admin::login_window()
-{
-	int number_sort = 0;
-	sf::RectangleShape rectangle1;
-	rectangle1.setSize(sf::Vector2f(300, 650));
-	rectangle1.setFillColor(sf::Color(200, 100, 100));
-	rectangle1.setPosition(sf::Vector2f(100, 100));
-
-	sf::RectangleShape rectangle2;
-	rectangle2.setSize(sf::Vector2f(50, 50));
-	rectangle2.setFillColor(sf::Color(0, 127, 255));
-	rectangle2.setPosition(sf::Vector2f(150, 150));
-
-	sf::RectangleShape rectangle3;
-	rectangle3.setSize(sf::Vector2f(50, 50));
-	rectangle3.setFillColor(sf::Color(0, 127, 255));
-	rectangle3.setPosition(sf::Vector2f(150, 250));
-
-	sf::RectangleShape rectangle4;
-	rectangle4.setSize(sf::Vector2f(50, 50));
-	rectangle4.setFillColor(sf::Color(0, 127, 255));
-	rectangle4.setPosition(sf::Vector2f(150, 350));
-
-	sf::RectangleShape rectangle5;
-	rectangle5.setSize(sf::Vector2f(50, 50));
-	rectangle5.setFillColor(sf::Color(0, 127, 255));
-	rectangle5.setPosition(sf::Vector2f(150, 450));
-
-	sf::RectangleShape rectangle6;
-	rectangle6.setSize(sf::Vector2f(50, 50));
-	rectangle6.setFillColor(sf::Color(0, 127, 255));
-	rectangle6.setPosition(sf::Vector2f(150, 550));
-
-	sf::RectangleShape rectangle7;
-	rectangle7.setSize(sf::Vector2f(50, 50));
-	rectangle7.setFillColor(sf::Color(0, 127, 255));
-	rectangle7.setPosition(sf::Vector2f(150, 650));
-
-	sf::Font front;
-	front.loadFromFile("type/Mistral.ttf");
-
-	sf::Text text;
-	text.setFont(front);
-	text.setFillColor(sf::Color::Black);
-	text.setStyle(sf::Text::Bold);
-	text.setCharacterSize(35);
-	text.setString(std::string("you are gay"));
-	text.setPosition(250, 250);
 
 
-	bool login_window_is_open = true;
-	bool text_ = false;
-
-
-	while (login_window_is_open)
-	{
-
-		window_check();
-
-		if (sf::IntRect(150, 150, 50, 50).contains(sf::Mouse::getPosition(window))) { rectangle2.setFillColor(sf::Color(255, 126, 0)); }
-
-		if (!(sf::IntRect(150, 150, 50, 50).contains(sf::Mouse::getPosition(window)))) { rectangle2.setFillColor(sf::Color(0, 127, 255)); }
-
-		if (sf::IntRect(150, 250, 50, 50).contains(sf::Mouse::getPosition(window))) { rectangle3.setFillColor(sf::Color(255, 126, 0)); }
-
-		if (!(sf::IntRect(150, 250, 50, 50).contains(sf::Mouse::getPosition(window)))) { rectangle3.setFillColor(sf::Color(0, 127, 255)); }
-
-		if (sf::IntRect(150, 350, 50, 50).contains(sf::Mouse::getPosition(window))) { rectangle4.setFillColor(sf::Color(255, 126, 0)); }
-
-		if (!(sf::IntRect(150, 350, 50, 50).contains(sf::Mouse::getPosition(window)))) { rectangle4.setFillColor(sf::Color(0, 127, 255)); }
-
-		if (sf::IntRect(150, 450, 50, 50).contains(sf::Mouse::getPosition(window))) { rectangle5.setFillColor(sf::Color(255, 126, 0)); }
-
-		if (!(sf::IntRect(150, 450, 50, 50).contains(sf::Mouse::getPosition(window)))) { rectangle5.setFillColor(sf::Color(0, 127, 255)); }
-
-		if (sf::IntRect(150, 550, 50, 50).contains(sf::Mouse::getPosition(window))) { rectangle6.setFillColor(sf::Color(255, 126, 0)); }
-
-		if (!(sf::IntRect(150, 550, 50, 50).contains(sf::Mouse::getPosition(window)))) { rectangle6.setFillColor(sf::Color(0, 127, 255)); }
-
-		if (sf::IntRect(150, 650, 50, 50).contains(sf::Mouse::getPosition(window))) { rectangle7.setFillColor(sf::Color(255, 126, 0)); }
-
-		if (!(sf::IntRect(150, 650, 50, 50).contains(sf::Mouse::getPosition(window)))) { rectangle7.setFillColor(sf::Color(0, 127, 255)); }
-
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-		{
-			if (sf::IntRect(150, 150, 50, 50).contains(sf::Mouse::getPosition(window)))
-			{
-				//text_ = true;
-				login_window_is_open = false;
-				number_sort = 0;
-			}
-			if (sf::IntRect(150, 250, 50, 50).contains(sf::Mouse::getPosition(window)))
-			{
-				//text_ = true;
-				login_window_is_open = false;
-				number_sort = 1;
-			}
-			if (sf::IntRect(150, 350, 50, 50).contains(sf::Mouse::getPosition(window)))
-			{
-				//text_ = true;
-				login_window_is_open = false;
-				number_sort = 2;
-			}
-			if (sf::IntRect(150, 450, 50, 50).contains(sf::Mouse::getPosition(window)))
-			{
-				//text_ = true;
-				login_window_is_open = false;
-				number_sort = 3;
-			}
-			if (sf::IntRect(150, 550, 50, 50).contains(sf::Mouse::getPosition(window)))
-			{
-				//text_ = true;
-				login_window_is_open = false;
-				number_sort = 4;
-			}
-			if (sf::IntRect(150, 650, 50, 50).contains(sf::Mouse::getPosition(window)))
-			{
-				//text_ = true;
-				login_window_is_open = false;
-				number_sort = 5;
-			}
-		}
-
-
-
-		window.clear();
-		window.draw(rectangle1);
-		window.draw(rectangle2);
-		window.draw(rectangle3);
-		window.draw(rectangle4);
-		window.draw(rectangle5);
-		window.draw(rectangle6);
-		window.draw(rectangle7);
-
-		if (text_) window.draw(text);
-		window.display();
-
-	}
-
-	return number_sort;
-}
 
 int window_admin::sort_selection_window()
 {
-	bool sort_selection_window_is_open = true;
+	int Wheel_delta = 0;
+	bool sort_selection_window_is_open = true; 
 	while (sort_selection_window_is_open)
-	{
-		window_check();
+	{																							
+		Wheel_delta += window_check();			// window_check returns wheel movement now, assigning that as an increment to Wheel_delta 
+		if (Wheel_delta > 0)					// checking boundaries
+			Wheel_delta = 0;					//
+		else if (Wheel_delta < -300)			//
+			Wheel_delta = -300;					//
 		window.draw(Sprite_Tbackground);
 
-		for (int i = 0; i <= 1536; i += 512)
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
-			STbutton_number_sort.setTextureRect(sf::IntRect(0,0+i, 512, 512));		
-			STbutton_number_sort.setPosition(100, 100+i*0.3);
+			for (int i = 0; i <= 2560; i += 512)
+			{
+				if (sf::IntRect(100, 100 + i * 0.3 + Wheel_delta, 128, 128).contains(sf::Mouse::getPosition(window)))  //just adding Wheel_delta to y-coordinate 
+				{
+					//text_ = true;
+					sort_selection_window_is_open = false;
+					//number_sort = 0;
+					return i / 512;
+				}
+			}
+		}
+
+		for (int i = 0; i <= 2560; i += 512)
+		{
+			STbutton_number_sort.setTextureRect(sf::IntRect(0, 0 + i, 512, 512));
+			STbutton_number_sort.setPosition(100, 100 + i * 0.3 + Wheel_delta);				 //just adding Wheel_delta to y-coordinate
 			window.draw(STbutton_number_sort);
 		}
-
-
-		for (int i = 0; i <= 1536; i += 512)
-		{
-		    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-		    {
-		    	  if (sf::IntRect(100, 100 + i * 0.3, 128, 128).contains(sf::Mouse::getPosition(window)))
-		    	  {
-		    	  	//text_ = true;
-		    	  	sort_selection_window_is_open = false;
-		    	  	//number_sort = 0;
-					return i / 512;
-		    	  }
-		    }
-		}
-
-
-
 		window.display();
-
 	}
 
 
@@ -214,16 +74,19 @@ bool window_admin::register_fun(int i, void (*sort_fun)(std::vector<int>& V))
 	return true;
 }
 
-void window_admin::window_check()
+int window_admin::window_check()
 {
+	int Switcher = 0;
 	sf::Event event;
 	while (window.pollEvent(event))
 	{
 		if (event.type == sf::Event::Closed)
 			window.close();
+		if (event.type == event.MouseWheelScrolled)								// checking if wheel is scrolled
+			Switcher = event.mouseWheelScroll.delta * 20;						// assigning delta as an increment to Switcher	
 	}
 
-
+	return Switcher;		// it's a fix for now, advise me something better
 }
 
 void window_admin::show(std::vector<int>& elem, indexInfo Info)
