@@ -44,6 +44,8 @@ private:
 	//button for settings
 	sf::Texture Tbutton_settings;
 	sf::Sprite STbutton_settings;
+	//
+	int Wheel_delta = 0;
 
 	//music and sounds
 	sf::SoundBuffer button_sound_Buffer;//-	
@@ -51,6 +53,8 @@ private:
 
 	sf::SoundBuffer sorting_sound_Buffer;//-	
 	sf::Sound sorting_sound;//-
+
+	;
 
 
 	enum class active_button_settings { nothing=-1, back, run, to_mix, sound_switching};
@@ -68,7 +72,7 @@ public:
 
 	bool register_fun(int i, void (*sort_fun)(std::vector<int>& V));
 
-	int window_check();
+	void window_check();
 
 	void show(std::vector<int>& elem, indexInfo Info);
 

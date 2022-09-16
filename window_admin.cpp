@@ -28,11 +28,12 @@ window_admin::window_admin() :window(sf::VideoMode(800, 800), "Zheka LOH"), vect
 
 int window_admin::sort_selection_window()
 {
-	int Wheel_delta = 0;
+
 	bool sort_selection_window_is_open = true; 
 	while (sort_selection_window_is_open)
-	{																							
-		Wheel_delta += window_check();			// window_check returns wheel movement now, assigning that as an increment to Wheel_delta 
+	{					
+		window_check();
+			 
 		if (Wheel_delta > 0)					// checking boundaries
 			Wheel_delta = 0;					//
 		else if (Wheel_delta < -300)			//
@@ -56,7 +57,7 @@ int window_admin::sort_selection_window()
 		for (int i = 0; i <= 2560; i += 512)
 		{
 			STbutton_number_sort.setTextureRect(sf::IntRect(0, 0 + i, 512, 512));
-			STbutton_number_sort.setPosition(100, 100 + i * 0.3 + Wheel_delta);				 //just adding Wheel_delta to y-coordinate
+			STbutton_number_sort.setPosition(100, 100 + i * 0.3 + Wheel_delta);	
 			window.draw(STbutton_number_sort);
 		}
 		window.display();
@@ -74,19 +75,17 @@ bool window_admin::register_fun(int i, void (*sort_fun)(std::vector<int>& V))
 	return true;
 }
 
-int window_admin::window_check()
+void window_admin::window_check()
 {
-	int Switcher = 0;
+
 	sf::Event event;
 	while (window.pollEvent(event))
 	{
 		if (event.type == sf::Event::Closed)
 			window.close();
-		if (event.type == event.MouseWheelScrolled)								// checking if wheel is scrolled
-			Switcher = event.mouseWheelScroll.delta * 20;						// assigning delta as an increment to Switcher	
+		if (event.type == event.MouseWheelScrolled)								
+			Wheel_delta += event.mouseWheelScroll.delta * 20;						
 	}
-
-	return Switcher;		// it's a fix for now, advise me something better
 }
 
 void window_admin::show(std::vector<int>& elem, indexInfo Info)
